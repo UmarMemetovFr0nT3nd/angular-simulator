@@ -1,1 +1,74 @@
-<h1 style="display: flex; justify-content: center; font-family: sans-serif;">NGX SIMULATOR</h1>
+<header class="header">
+  <div class="main-header">
+    <div class="container main-header__content">
+      <img class="header__logo" src="/images/logo-icon.svg" alt="Logo" class="logo" />
+
+      <ul class="header__list semi-bold fs-18">
+        <li class="header__list-item">
+          <a href="#" class="header__link">Главная</a>
+        </li>
+        <li class="header__list-item">
+          <a href="#" class="header__link">Про гида</a>
+        </li>
+        <li class="header__list-item">
+          <a href="#" class="header__link">Программа тура</a>
+        </li>
+        <li class="header__list-item">
+          <a href="#" class="header__link">Стоимость</a>
+        </li>
+        <li class="header__list-item">
+          <a href="#" class="header__link">Блог</a>
+        </li>
+        <li class="header__list-item">
+          <a href="#" class="header__link">Контакты</a>
+        </li>
+      </ul>
+
+      <button class="header__button semi-bold fs-16">Консультация</button>
+
+    </div>
+  </div>
+</header>
+
+<section class="main-info">
+  <div class="banner"></div>
+  <div class="container main-info__content">
+    <h1 class="main-info__title regular">насладись прогулкой в горах<br/> с командой единомышленников</h1>
+    <div class="main-info__form">
+      <div class="form-location-wrapper">
+        <select class="form-location fs-16 bold" id="form-location">
+          <option value="" disabled selected hidden>Локация для тура</option>
+          <option value="1">Алтай</option>
+          <option value="2">Кавказ</option>
+          <option value="3">Камчатка</option>
+        </select>
+        <span class="select-arrow"></span>
+        <label for="form-location" class="form-label fs-14 regular">выберите из списка</label>
+      </div>
+      <div class="form-date-wrapper">
+        <input 
+          class="form-date fs-16 bold" 
+          id="form-date" 
+          type="text" 
+          placeholder="Дата похода"
+          #dateInput
+          onfocus="this.type='date'; this.showPicker?.();" 
+          onblur="if(!this.value)this.type='text'"
+        />
+        <span class="calendar-icon" (click)="dateInput.showPicker()"></span>
+        <label for="form-date" class="form-label fs-14 regular">укажите дату</label>
+      </div>
+      <div class="form-participants-wrapper">
+        <select class="form-participants fs-16 bold" id="form-participants">
+          <option value="" disabled selected hidden>Количество участников</option>
+          <option value="1">1 участник</option>
+          <option value="2">2 участника</option>
+          <option value="3">3+ участника</option>
+        </select>
+        <span class="select-arrow"></span>
+        <label for="form-participants" class="form-label fs-14 regular">выберите из списка</label>
+      </div>
+      <button class="form-button">Найти программу</button>
+    </div>
+  </div>
+</section>
