@@ -1,0 +1,50 @@
+@use './_fonts.scss';
+@use './_normalize.scss';
+
+* {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.container {
+  display: block;
+  width: 1180px;
+}
+
+:root{
+  --primary-color: #18121E;
+  --white-color: #FDFDFD;
+  --secondary-color: #F2BE22;
+  --button-color: #1A3E3E;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.semi-bold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.extra-bold {
+  font-weight: 800;
+}
