@@ -18,8 +18,8 @@ export class AppComponent {
 
 
   companyName: string = 'РумТибет';
-  companySlogan: string = 'насладись прогулкой в горах с командой единомышленников';
-
+  companySloganPart1: string = 'насладись прогулкой в горах';
+  companySloganPart2: string = 'с командой единомышленников';
 
   checkColor(color: Colors): boolean {
     if (color === Colors.RED || color === Colors.GREEN || color === Colors.BLUE) {
