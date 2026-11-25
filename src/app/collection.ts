@@ -35,14 +35,14 @@ export class Collection<T> {
 const fruitCollection = new Collection<string>(fruits);
 const vegetableCollection = new Collection<string>(vegetables);
 
-console.log(fruitCollection.getAllItems());
-console.log(fruitCollection.getItem(2));
-console.log(fruitCollection.removeItem(1));
-console.log(fruitCollection.replaceItem(0, 'pear'));
-console.log(fruitCollection.clearItems());
+// console.log(fruitCollection.getAllItems());
+// console.log(fruitCollection.getItem(2));
+// console.log(fruitCollection.removeItem(1));
+// console.log(fruitCollection.replaceItem(0, 'pear'));
+// console.log(fruitCollection.clearItems());
 
-console.log(vegetableCollection.getAllItems());
-console.log(vegetableCollection.getItem(2));
-console.log(vegetableCollection.removeItem(1));
-console.log(vegetableCollection.replaceItem(0, 'lettuce'));
-console.log(vegetableCollection.clearItems());
+// console.log(vegetableCollection.getAllItems());
+// console.log(vegetableCollection.getItem(2));
+// console.log(vegetableCollection.removeItem(1));
+// console.log(vegetableCollection.replaceItem(0, 'lettuce'));
+// console.log(vegetableCollection.clearItems());

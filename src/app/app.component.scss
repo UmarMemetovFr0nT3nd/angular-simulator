@@ -1,19 +1,70 @@
+.loading-page {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .loading-container {
+    width: 685px;
+    height: 152px;
+    background-color: var(--white-color);
+    display: flex;
+    align-items: center;
+    padding: 50px;
+    gap: 70px;
+
+    .loading-icon {
+      width: 51px;
+      height: 51px;
+      display: block;
+      transform-origin: 51% 44%;
+      animation: spin 2s linear infinite reverse;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+
+
+@mixin positionDateClicker {
+  position: absolute;
+  right: 0;
+  bottom: -61px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  width: max-content;
+  height: 44px;
+}
+
+
 .header {
   color: var(--white-color);
 
 
 
   .main-header {
-    height: 120px;
+    height: 156px;
     background-color: rgba(24, 18, 30, 0.5);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
     &__content {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-top: 18px;
+      position: relative;
       
       .header__logo {
         display: block;
@@ -38,8 +89,45 @@
         height: 44px;
         width: 158px;
         border-radius: 4px;
-        padding: 12px 24px;
+        padding: 12px 0;
         border: none;
+        color: var(--primary-color);
+      }
+
+      .dateClicker {
+        @include positionDateClicker;
+      }
+
+      .clickerDate {
+        @include positionDateClicker;
+
+        .clicker {
+          background-color: rgba(0, 0, 0, 0.25);
+          color: var(--white-color);
+          width: 158px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+
+          span {
+            display: block;
+          }
+
+          button {
+            background-color: transparent;
+            border: none;
+            border-radius: 4px;
+            width: 12px;
+            height: 24px;
+            padding: 0;
+          }
+
+          button:disabled {
+            color: grey;
+          } 
+          
+        }
       }
     }
   }
@@ -92,7 +180,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 156px);
 
   .banner {
     background-image: url('/images/main-bg.png');
@@ -111,23 +199,24 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    gap: 41px;
-    height: calc(100vh - 120px);
-    color: var(--white-color);
+    height: calc(100vh - 156px);
+
 
     .main-info__title {
       font-size: 50px;
       line-height: 150%;
       text-transform: uppercase;
+      color: var(--white-color);
     }
 
     .main-info__form {
-      margin-bottom: 82px;
       background-color: rgba(255, 255, 255, 0.2);
       padding: 40px 42px;
       display: flex;
       gap: 24px;
       border-radius: 10px;
+      margin-top: 41px;
+      margin-bottom: 15px;
 
 
       .form-location-wrapper{
@@ -203,17 +292,205 @@
 
       .form-label {
         margin-left: 8px;
+        color: var(--white-color);
       }
 
+    }
 
+    .live-input__container {
+      width: 470px;
+      height: 52px;
+      margin-bottom: 15px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      position: relative;
+      display: flex;
+      align-items: center;
 
-      .form-button {
-        background-color: var(--button-color);
-        border: none;
-        border-radius: 4px;
-        color: var(--white-color);
+      input {
         height: 52px;
-        width: 213px;
+        width: 270px;
+        border: 1px solid #E1E3E4;
+        border-radius: 8px;
+        background-color: transparent;
+        padding: 12px 22px 12px 14px;
+        color: var(--white-color);
+      }
+
+      input::placeholder {
+        color: var(--white-color)
+      }
+
+      .select-arrow {
+        top: 26px;
+        right: 215px;
+        transform: translateY(-50%) rotate(-45deg);
+      }
+
+      .live-input__text {
+        display: block;
+        color: var(--white-color); 
+        width: 200px;
+        text-align: center;
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+
+      .live-input__text::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+.hike-info {
+  height: 726px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    height: 526px;
+
+    &-images {
+      position: relative;
+      width: 480px;
+      height: 526px;
+
+      .lodge-image {
+        position: absolute;
+        top: 126px;
+        left: 130px;
+        border-radius: 24px;
+      }
+    }
+
+    &-content {
+      width: 580px;
+
+      .hike-supertitle {
+        color: var(--secondary-color);
+      }
+
+      .hike-title {
+        line-height: 120%;
+        margin-top: 8px;
+        margin-bottom: 40px;
+      }
+
+      .hike-history {
+        line-height: 150%;
+        margin-bottom: 40px;
+      }
+    }
+  } 
+}
+
+
+.offers {
+  height: 721px;
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      height: 591px;
+      width: 580px;
+
+      .offers__title {
+
+        &-subtitle {
+          display: block;
+          color: var(--secondary-color);
+          margin-bottom: 8px;
+        }
+      }
+
+      .offers__description {
+        line-height: 150%;
+      }
+
+      .offers-list {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+
+        .offer {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          transform: scale(1);
+          transition: transform 0.25s ease;
+
+          &:hover {
+            transform: translateY(-8px) scale(1.07);
+          }
+
+          
+          .offer__title {
+            margin-bottom: 4px;
+          }
+
+          .offer__description {
+            line-height: 20px;
+          }
+        }
+      }
+
+      .price-button {
+        width: 236px;
+      }
+    }
+
+    &-images {
+      width: 510px;
+      height: 510px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+
+      .small-cup-image{
+        width: 250;
+        height: 250;
+        border-top-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+      }
+
+      .canyon-image {
+        width: 250;
+        height: 250;
+        border-top-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+      }
+
+      .snowmobile-image {
+        width: 250;
+        height: 250;
+        border-top-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+      }
+
+      .stream-image {
+        width: 250;
+        height: 250;
+        border-top-right-radius: 50px;
+        border-bottom-left-radius: 50px;
       }
     }
   }

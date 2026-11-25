@@ -1,77 +1,156 @@
-<header class="header">
-  <div class="main-header">
-    <div class="container main-header__content">
-      <img class="header__logo" src="/images/logo-icon.svg" alt="Logo" class="logo" />
-
-      <ul class="header__list semi-bold fs-18">
-        <li class="header__list-item">
-          <a href="#" class="header__link">Главная</a>
-        </li>
-        <li class="header__list-item">
-          <a href="#" class="header__link">Про гида</a>
-        </li>
-        <li class="header__list-item">
-          <a href="#" class="header__link">Программа тура</a>
-        </li>
-        <li class="header__list-item">
-          <a href="#" class="header__link">Стоимость</a>
-        </li>
-        <li class="header__list-item">
-          <a href="#" class="header__link">Блог</a>
-        </li>
-        <li class="header__list-item">
-          <a href="#" class="header__link">Контакты</a>
-        </li>
-      </ul>
-
-      <button class="header__button semi-bold fs-16">Консультация</button>
-
+@if (isLoading) {
+  <div class="loading-page">
+    <div class="loading-container">
+      <img src="/images/loading.svg" alt="loading" class="loading-icon">
+      <p class="fs-32 extra-bold">Данные загружаются</p>
     </div>
   </div>
-</header>
+} @else {
+  <header class="header">
+    <div class="main-header">
+      <div class="container main-header__content">
+        <img class="header__logo" src="/images/logo-icon.svg" alt="Logo" class="logo" />
 
-<section class="main-info">
-  <div class="banner"></div>
-  <div class="container main-info__content">
-    <h1 class="main-info__title regular">
-      {{ companySloganPart1 }}<br/>
-      {{ companySloganPart2 }}
-    </h1>
-    <div class="main-info__form">
-      <div class="form-location-wrapper">
-        <select class="form-location fs-16 bold" id="form-location">
-          <option value="" disabled selected hidden>Локация для тура</option>
-          <option value="1">Алтай</option>
-          <option value="2">Кавказ</option>
-          <option value="3">Камчатка</option>
-        </select>
-        <span class="select-arrow"></span>
-        <label for="form-location" class="form-label fs-14 regular">выберите из списка</label>
+        <ul class="header__list semi-bold fs-18">
+          <li class="header__list-item">
+            <a href="#" class="header__link">Главная</a>
+          </li>
+          <li class="header__list-item">
+            <a href="#" class="header__link">Про гида</a>
+          </li>
+          <li class="header__list-item">
+            <a href="#" class="header__link">Программа тура</a>
+          </li>
+          <li class="header__list-item">
+            <a href="#" class="header__link">Стоимость</a>
+          </li>
+          <li class="header__list-item">
+            <a href="#" class="header__link">Блог</a>
+          </li>
+          <li class="header__list-item">
+            <a href="#" class="header__link">Контакты</a>
+          </li>
+        </ul>
+
+        <button class="header__button semi-bold fs-16">Консультация</button>
+
+        @if (isBlockVisible) {
+        <div class="clickerDate">
+          <div class="clicker semi-bold fs-16">
+            <button (click)="increment()">+</button>
+            <span>{{ clickCount }}</span>
+            <button (click)="decrement()" [disabled]="clickCount === 0">-</button>
+          </div>
+          <button class="header__button semi-bold fs-16" (click)="toggleBlock()">Показать дату</button>
+        </div>
+        } @else {
+          <div class="dateClicker">
+            <span class="semi-bold fs-18">{{ nowDate }}</span>
+            <button class="header__button semi-bold fs-16" (click)="toggleBlock()">Показать кликер</button>
+          </div>
+        }
+
       </div>
-      <div class="form-date-wrapper">
-        <input 
-          class="form-date fs-16 bold" 
-          id="form-date" 
-          type="text" 
-          placeholder="Дата похода"
-          #dateInput
-          onfocus="this.type='date'; this.showPicker?.();" 
-          onblur="if(!this.value)this.type='text'"
-        />
-        <span class="calendar-icon" (click)="dateInput.showPicker()"></span>
-        <label for="form-date" class="form-label fs-14 regular">укажите дату</label>
-      </div>
-      <div class="form-participants-wrapper">
-        <select class="form-participants fs-16 bold" id="form-participants">
-          <option value="" disabled selected hidden>Количество участников</option>
-          <option value="1">1 участник</option>
-          <option value="2">2 участника</option>
-          <option value="3">3+ участника</option>
-        </select>
-        <span class="select-arrow"></span>
-        <label for="form-participants" class="form-label fs-14 regular">выберите из списка</label>
-      </div>
-      <button class="form-button">Найти программу</button>
     </div>
-  </div>
-</section>
+  </header>
+
+  <section class="main-info">
+    <div class="banner"></div>
+    <div class="container main-info__content"> 
+      <h1 class="main-info__title regular">
+        {{ companySloganPart1 }}<br/>
+        {{ companySloganPart2 }}
+      </h1>
+      <div class="main-info__form">
+        <div class="form-location-wrapper">
+          <select class="form-location fs-16 bold" id="form-location" [(ngModel)]="locationInput">
+            <option value="" disabled selected hidden>Локация для тура</option>
+            <option value="Алтай">Алтай</option>
+            <option value="Кавказ">Кавказ</option>
+            <option value="Камчатка">Камчатка</option>
+          </select>
+          <span class="select-arrow"></span>
+          <label for="form-location" class="form-label fs-14 regular">выберите из списка</label>
+        </div>
+        <div class="form-date-wrapper">
+          <input 
+            class="form-date fs-16 bold" 
+            id="form-date" 
+            type="text" 
+            placeholder="Дата похода"
+            #dateInput
+            onfocus="this.type='date'; this.showPicker?.();" 
+            onblur="if(!this.value)this.type='text'"
+            [(ngModel)]="dateInputForm"
+          />
+          <span class="calendar-icon" (click)="dateInput.showPicker()"></span>
+          <label for="form-date" class="form-label fs-14 regular">укажите дату</label>
+        </div>
+        <div class="form-participants-wrapper">
+          <select class="form-participants fs-16 bold" id="form-participants" [(ngModel)]="participantsInput">
+            <option value="" disabled selected hidden>Количество участников</option>
+            <option value="1 участник">1 участник</option>
+            <option value="2 участника">2 участника</option>
+            <option value="3 участника">3+ участника</option>
+          </select>
+          <span class="select-arrow"></span>
+          <label for="form-participants" class="form-label fs-14 regular">выберите из списка</label>
+        </div>
+        <button class="form-button" [disabled]="!locationInput || !dateInputForm || !participantsInput">Найти программу</button>
+      </div>
+      <div class="live-input__container">
+        <input type="text" placeholder="Живой инпут" class="fs-16 bold" id="live-input" [(ngModel)]="liveInput">
+        <span class="select-arrow"></span>
+        <span class="live-input__text">{{ liveInput }}</span>
+    </div>
+    </div>
+  </section>
+  <section class="hike-info">
+
+    <div class="container hike-info__container">
+      <div class="hike-info__container-images">
+        <img src="/images/mountain.jpg" alt="Горный пейзаж"/>
+        <img src="/images/lodge.jpg" alt="Уютная хижина" class="lodge-image"/>
+      </div>
+      <div class="hike-info__container-content">
+        <span class="regular fs-24 hike-supertitle">о нашем походе</span>
+        <h2 class="extra-bold hike-title fs-32 pcolor">Исследуйте все горные массивы мира вместе с нами</h2>
+        <p class="regular fs-18 hike-history pcolor">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+        <button>Программа тура</button>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="offers">
+
+    <div class="container offers__container">
+      <div class="offers__container-content">
+        <div class="offers__title">
+          <span class="fs-24 regular offers__title-subtitle">наше предложение</span>
+          <h2 class="fs-32 extra-bold pcolor">Лучшие программы для тебя</h2>
+        </div>
+        <p class="pcolor regular fs-18 offers__description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+        <div class="offers-list">
+          @for (offer of offers; track offer.id) {
+            <div class="offer">
+              <img src="{{ offer.icon }}" alt="{{ offer.title }}" width="50px" height="50px"/>
+              <div class="offer__content-container">
+                <h3 class="bold fs-18 pcolor offer__title">{{ offer.title }}</h3>
+                <p class="regular fs-14 pcolor offer__description">{{ offer.description }}</p>
+              </div>
+            </div>
+          }
+        </div>
+        <button class="price-button">Стоимость программ</button>
+      </div>
+      <div class="offers__container-images">
+        <img src="/images/small-cup.jpg" alt="Чай у озера" class="small-cup-image"/>
+        <img src="/images/canyon.jpg" alt="Каньон" class="canyon-image"/>
+        <img src="/images/snowmobile.jpg" alt="Снегоход в горах" class="snowmobile-image"/>
+        <img src="/images/stream.jpg" alt="Ручей в горах" class="stream-image"/>
+      </div>
+    </div>
+
+  </section>
+}

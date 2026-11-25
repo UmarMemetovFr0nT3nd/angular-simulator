@@ -1,8 +1,10 @@
 @use './_fonts.scss';
 @use './_normalize.scss';
+@use './button.scss';
 
 * {
   font-family: 'Nunito Sans', sans-serif;
+  box-sizing: border-box;
 }
 
 .container {
@@ -15,6 +17,7 @@
   --white-color: #FDFDFD;
   --secondary-color: #F2BE22;
   --button-color: #1A3E3E;
+  --background-color: #F3F5F4;
 }
 
 .fs-14 {
@@ -33,6 +36,10 @@
   font-size: 24px;
 }
 
+.fs-32 {
+  font-size: 32px;;
+}
+
 .regular {
   font-weight: 400;
 }
@@ -47,4 +54,8 @@
 
 .extra-bold {
   font-weight: 800;
+}
+
+.pcolor {
+  color: var(--primary-color)
 }
